@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {useRecoilValue, useSetRecoilState} from "recoil";
-import {TickerList, TickerPriceSum} from "./recoil/Ticker";
-import TickerDisplay from "./components/TickerDisplay";
+import {TickerList, TickerPriceSum} from "./recoil/TickerJotai";
+import TickerDisplay from "./components/TickerDisplayJotai";
+import {useAtom, useAtomValue} from "jotai";
 
 function App() {
-    const setTickerList = useSetRecoilState(TickerList);
-    const tickerSum = useRecoilValue(TickerPriceSum)
-
+    const [, setTickerList] = useAtom(TickerList);
+    const tickerSum = useAtomValue(TickerPriceSum)
     useEffect(() => {
         let interval = setInterval(() => {
             setTickerList([{
